@@ -27,13 +27,12 @@ sub(1/27*sub(F1Unknown2,{a=>-36,b=>-64,c=>1}),R)
 R = QQ[X,Y];
 F2 = X^4+Y^4+(X+Y)^4
 Phi2 = inverseSystem F2 -- Ann(F2)_2 is empty and generators of Ann(F2)_3 is not unique.
-
-R = QQ[X,Y];
 F3 = X^4+Y^4
 Phi3 = inverseSystem F3 -- There is unique generator in Ann(F3)_2 and no further normalized GAD's of length 3.
 
 --- Additional discussions
 ---- How to find apolar ideal? Example: F2
+F2 = X^4+Y^4+(X+Y)^4;
 mingens ker diff(basis(1,R), F2) -- no column vectors with degree 0 entries
 mingens ker diff(basis(2,R), F2) -- no column vectors with degree 0 entries
 mingens ker diff(basis(3,R), F2) -- two column vectors with degree 0 entries

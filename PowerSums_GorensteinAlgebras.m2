@@ -1,4 +1,27 @@
 -- Power sums, Gorenstein algebras, and determinantal loci.
+-- 1.1. polarity and Catalecticant Varieties: The Dimensions of the Vector Spaces of Higher Partials
+R = QQ[X,Y];
+F = X^4+Y^4+(X+Y)^4;
+---- Compute Ann(F).
+Ann = inverseSystem F
+
+---- Find apolar ideal manually.
+mingens ker diff(basis(1,R), F) -- no column vectors with degree 0 entries
+mingens ker diff(basis(2,R), F) -- no column vectors with degree 0 entries
+mingens ker diff(basis(3,R), F) -- two column vectors with degree 0 entries
+(super basis(3,R)) * submatrix(mingens ker diff(basis(3,R), F),{0,1}) -- Obtained the two generators of Ann(F)
+
+---- Additional discussions
+mingens ker diff(basis(4,R), F) -- four column vectors with degree 0 entries
+(super basis(4,R)) * mingens ker diff(basis(4,R), F) -- They form degree 4 polynomials that are apolar to F2. By adding F2, we obtain a basis of R_4.
+mingens ker diff(basis(5,R), F)
+(super basis(5,R)) * mingens ker diff(basis(5,R), F)
+
+---- Recover the homogeneous polynomial "F" from its apolar ideal "Ann".
+ideal((inverseSystem(ideal super basis(4,inverseSystem F)))_0) == ideal F
+
+restart
+
 -- 1.3 Binary forms and Hankel Matrices
 --- Example 1.34 (1)
 R = QQ[X,Y];
@@ -30,17 +53,4 @@ Phi2 = inverseSystem F2 -- Ann(F2)_2 is empty and generators of Ann(F2)_3 is not
 F3 = X^4+Y^4
 Phi3 = inverseSystem F3 -- There is unique generator in Ann(F3)_2 and no further normalized GAD's of length 3.
 
---- Additional discussions
----- How to find apolar ideal? Example: F2
-F2 = X^4+Y^4+(X+Y)^4;
-mingens ker diff(basis(1,R), F2) -- no column vectors with degree 0 entries
-mingens ker diff(basis(2,R), F2) -- no column vectors with degree 0 entries
-mingens ker diff(basis(3,R), F2) -- two column vectors with degree 0 entries
-(super basis(3,R)) * submatrix(mingens ker diff(basis(3,R), F2),{0,1}) -- Obtained the two generators of Ann(F)
-mingens ker diff(basis(4,R), F2) -- four column vectors with degree 0 entries
-(super basis(4,R)) * mingens ker diff(basis(4,R), F2) -- They form degree 4 polynomials that are apolar to F2. By adding F2, we obtain a basis of R_4.
-mingens ker diff(basis(5,R), F2)
-(super basis(5,R)) * mingens ker diff(basis(5,R), F2)
 
----- How to recover the homogeneous polynomial from its apolar ideal? Example: F2
-ideal((inverseSystem(ideal super basis(4,inverseSystem F2)))_0) == ideal F2

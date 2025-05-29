@@ -43,4 +43,4 @@ mingens ker diff(basis(5,R), F2)
 (super basis(5,R)) * mingens ker diff(basis(5,R), F2)
 
 ---- How to recover the homogeneous polynomial from its apolar ideal? Example: F2
-ideal(super basis(4, inverseSystem(super basis(4,inverseSystem F2)))) == ideal F2
+ideal((inverseSystem(ideal super basis(4,inverseSystem F2)))_0) == ideal F2
